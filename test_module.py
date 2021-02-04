@@ -27,16 +27,19 @@ api = tweepy.API(auth, wait_on_rate_limit=True)
 # for tweet in recent_tweets:
 #     print(tweet.text)
 
-rushia = api.get_user(id='uruharushia')
-tweets = api.user_timeline(screen_name='uruharushia',
-                           count = 20,
-                           include_rts = False,
-                           tweet_mode = 'extended',
-                           exclude_replies = True
-                           )
-for x in tweets[:5]:
-    print(x.full_text)
-    print()
+# rushia = api.get_user(id='uruharushia')
+# tweets = api.user_timeline(screen_name='uruharushia',
+#                            count = 20,
+#                            include_rts = False,
+#                            tweet_mode = 'extended',
+#                            exclude_replies = True
+#                            )
+# for x in tweets[:5]:
+#     print(x.full_text)
+#     print()
 
+### Like a tweet
+tweet_id = "1357253177700098048"
+api.create_favorite(tweet_id)
 
 

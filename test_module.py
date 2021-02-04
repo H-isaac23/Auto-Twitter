@@ -38,8 +38,25 @@ api = tweepy.API(auth, wait_on_rate_limit=True)
 #     print(x.full_text)
 #     print()
 
-### Like a tweet
-tweet_id = "1357253177700098048"
-api.create_favorite(tweet_id)
+# ### Like a tweet
+# tweet_id = "1357253177700098048"
+# api.create_favorite(tweet_id)
+
+tweets = api.user_timeline(screen_name = 'uruharushia',
+                           exclude_replies = True,
+                           count = 20,
+                           include_rts = False,
+                           tweet_mode = 'extended'
+                           )
+for tweet in tweets:
+    attr = dir(tweet)
+    print(attr)
+    if 'quoted_status_id' in attr:
+        print(True)
+    else:
+        print(False)
+    print("-------------------------------")
+
+
 
 

@@ -1,17 +1,6 @@
 import os
 import tweepy
 
-
-def favorite_tweet(t_id, ftd):
-    if not ftd:
-        api.create_favorite(t_id)
-
-
-def retweet(t_id, rtd):
-    if not rtd:
-        api.retweet(t_id)
-
-
 consumer_key = os.environ.get("TWITTER_API_KEY")
 consumer_secret = os.environ.get("TWITTER_API_KEY_SECRET")
 access_token = os.environ.get("TWITTER_ACCESS_TOKEN")
@@ -43,7 +32,13 @@ with open("screen names.txt", 'r') as f:
             retweeted = tweet.retweeted
             tweet_id = tweet.id
 
-            favorite_tweet(tweet_id, favorited)
-            retweet(tweet_id, retweeted)
+            print(favorited)
+            print(retweeted)
+
+            if not retweeted:
+                api.retweet(tweet_id)
+            if not favorited:
+                api.create_favorite(tweet_id)
 
             print(tweet.full_text)
+            print('-----------------------------------------------------')

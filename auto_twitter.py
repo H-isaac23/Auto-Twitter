@@ -26,7 +26,7 @@ screen_name = 'minatoaqua'
 
 tweets = api.user_timeline(screen_name=screen_name,
                            exclude_replies=True,
-                           count=10,
+                           count=20,
                            include_rts=True,
                            tweet_mode='extended'
                            )

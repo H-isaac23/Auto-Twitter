@@ -22,19 +22,28 @@ auth.set_access_token(access_token, access_token_secret)
 
 api = tweepy.API(auth, wait_on_rate_limit=True)
 
-screen_name = 'minatoaqua'
+with open("screen names.txt", 'r') as f:
 
-tweets = api.user_timeline(screen_name=screen_name,
-                           exclude_replies=True,
-                           count=20,
-                           include_rts=True,
-                           tweet_mode='extended'
-                           )
+    for name in f.readlines():
+        screen_name = None
+        if name[-1] == "\n":
+            screen_name = name[:-1]
+        else:
+            screen_name = name
 
-for tweet in tweets:
-    favorited = tweet.favorited
-    retweeted = tweet.retweeted
-    tweet_id = tweet.id
+        tweets = api.user_timeline(screen_name=screen_name,
+                                   exclude_replies=True,
+                                   count=20,
+                                   include_rts=True,
+                                   tweet_mode='extended'
+                                   )
 
-    favorite_tweet(tweet_id, favorited)
-    retweet(tweet_id, retweeted)
+        for tweet in tweets:
+            favorited = tweet.favorited
+            retweeted = tweet.retweeted
+            tweet_id = tweet.id
+
+            favorite_tweet(tweet_id, favorited)
+            retweet(tweet_id, retweeted)
+
+            print(tweet.full_text)

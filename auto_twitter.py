@@ -22,7 +22,7 @@ with open("screen names.txt", 'r') as f:
 
         tweets = api.user_timeline(screen_name=screen_name,
                                    exclude_replies=True,
-                                   count=20,
+                                   count=7,
                                    include_rts=True,
                                    tweet_mode='extended'
                                    )

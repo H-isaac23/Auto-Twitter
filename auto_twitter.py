@@ -32,12 +32,9 @@ with open("screen names.txt", 'r') as f:
             retweeted = tweet.retweeted
             tweet_id = tweet.id
 
-            print(favorited)
-            print(retweeted)
-
             if not retweeted:
                 api.retweet(tweet_id)
             if not favorited:
                 api.create_favorite(tweet_id)
                 print(tweet.full_text)
-            print('-----------------------------------------------------')
+                print('-----------------------------------------------------')

@@ -18,6 +18,7 @@ with open("screen names.txt", 'r') as f:
         if name[-1] == "\n":
             screen_name = name[:-1]
         else:
+
             screen_name = name
 
         tweets = api.user_timeline(screen_name=screen_name,
@@ -33,8 +34,14 @@ with open("screen names.txt", 'r') as f:
             tweet_id = tweet.id
 
             if not retweeted:
-                api.retweet(tweet_id)
+                try:
+                    api.retweet(tweet_id)
+                except tweepy.error.TweepError:
+                    print("Tweet already retweeted.")
             if not favorited:
-                api.create_favorite(tweet_id)
+                try:
+                    api.create_favorite(tweet_id)
+                except tweepy.error.TweepError:
+                    print("Tweet already favorited")
                 print(tweet.full_text)
                 print('-----------------------------------------------------')
